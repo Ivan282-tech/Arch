@@ -11,16 +11,9 @@ echo "127.0.1.1 localhost.localdomain ivan" >> /etc/hosts
 pacman -S networkmanager
 systemctl enable NetworkManager
 passwd
-if(os.path.exists("/sys/firmware/efi")):
-        pacman -S grub efibootmgr
-        mkdir /boot/efi
-        mount /dev/sda1 /boot/efi
-        grub-install --target=x86_64-efi --bootloader-id=GRUB --efi-directory=/boot/efi --removable
-        grub-mkconfig -o /boot/grub/grub.cfg
-    else:
-        pacman -S grub
-        grub-install /dev/sda
-        grub-mkconfig -o /boot/grub/grub.cfg
+pacman -S grub
+grub-install /dev/sda
+grub-mkconfig -o /boot/grub/grub.cfg
 exit
 umount -R /mnt
 reboot
