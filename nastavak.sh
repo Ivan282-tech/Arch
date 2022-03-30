@@ -9,9 +9,17 @@ echo "127.0.1.1 localhost.localdomain ivan" >> /etc/hosts
 pacman -S networkmanager --noconfirm
 systemctl enable NetworkManager 
 passwd
-pacman -S grub --noconfirm
-grub-install /dev/sda
-grub-mkconfig -o /boot/grub/grub.cfg
+MODE=$([ -d /sys/firmware/efi ] && echo UEFI || echo BIOS)
+if [ $MODE == UEFI ]; then
+    mkdir /boot/efi
+    mount /dev/sda1 /boot/efi
+    grub-install --target=x86_64-efi --bootloader-id=GRUB --efi-directory=/boot/efi --removable
+    grub-mkconfig -o /boot/grub/grub.cfg
+else
+    pacman -S grub --noconfirm
+    grub-install /dev/sda
+    grub-mkconfig -o /boot/grub/grub.cfg
+fi
 fallocate -l 3G /swapfile
 chmod 600 /swapfile
 mkswap /swapfile
