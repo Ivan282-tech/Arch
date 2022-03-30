@@ -11,6 +11,7 @@ systemctl enable NetworkManager
 passwd
 MODE=$([ -d /sys/firmware/efi ] && echo UEFI || echo BIOS)
 if [ $MODE == UEFI ]; then
+    pacman -S grub efibootmgr --noconfirm
     mkdir /boot/efi
     mount /dev/sda1 /boot/efi
     grub-install --target=x86_64-efi --bootloader-id=GRUB --efi-directory=/boot/efi --removable
@@ -30,6 +31,9 @@ useradd -m -g users -G wheel -s /bin/bash ivan
 passwd ivan
 echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
 pacman -S pulseaudio pulseaudio-alsa xorg xorg-xinit xorg-server --noconfirm
+git clone https://aur.archlinux.org/yay-git.git
+cd yay-git
+makepkg -si
 echo "1 - GNOME"
 echo "2 - KDE plasma"
 echo "3 - XFCE"
