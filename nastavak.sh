@@ -31,9 +31,6 @@ useradd -m -g users -G wheel -s /bin/bash ivan
 passwd ivan
 echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
 pacman -S pulseaudio pulseaudio-alsa xorg xorg-xinit xorg-server --noconfirm
-git clone https://aur.archlinux.org/yay-git.git
-cd yay-git
-makepkg -si
 echo "1 - GNOME"
 echo "2 - KDE plasma"
 echo "3 - XFCE"
