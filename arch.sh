@@ -1,6 +1,7 @@
 pacstrap -i /mnt base linux linux-firmware sudo nano
 genfstab -U -p /mnt >> /mnt/etc/fstab
-arch-chroot /mnt /bin/bash
+arch-chroot /mnt /file/in/chroot/arch.sh
+bash
 echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 locale-gen 
 echo "LANG=en_US.UTF-8" > /etc/locale.conf
