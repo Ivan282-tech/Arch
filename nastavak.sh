@@ -8,6 +8,7 @@ echo ivan > /etc/hostname
 echo "127.0.1.1 localhost.localdomain ivan" >> /etc/hosts
 pacman -S networkmanager --noconfirm
 systemctl enable NetworkManager 
+echo "SIFRA ZA ROOT KORISNIKA"
 passwd
 MODE=$([ -d /sys/firmware/efi ] && echo UEFI || echo BIOS)
 if [ $MODE == UEFI ]; then
@@ -28,9 +29,11 @@ mkswap /swapfile
 swapon /swapfile
 echo '/swapfile none swap sw 0 0' >> /etc/fstab
 useradd -m -g users -G wheel -s /bin/bash ivan
+echo "SIFRA ZA OBICNOG KORISNIKA!!!"
 passwd ivan
 echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
 pacman -S pulseaudio pulseaudio-alsa xorg xorg-xinit xorg-server --noconfirm
+echo "IZABERI DESKTOP OKRUZENJE"
 echo "1 - GNOME"
 echo "2 - KDE plasma"
 echo "3 - XFCE"
