@@ -18,7 +18,7 @@ mkswap /swapfile
 swapon /swapfile
 echo '/swapfile none swap sw 0 0' >> /etc/fstab
 useradd -m -g users -G wheel -s /bin/bash ivan
-passwd username
+passwd ivan
 echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
 pacman -S pulseaudio pulseaudio-alsa xorg xorg-xinit xorg-server --noconfirm
 pacman -S --needed  sddm --noconfirm

@@ -7,4 +7,3 @@ genfstab -U -p /mnt >> /mnt/etc/fstab
 chmod +x nastavak.sh
 cp nastavak.sh /mnt/
 arch-chroot /mnt /bin/bash
-./nastavak.sh
