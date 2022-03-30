@@ -1,4 +1,4 @@
-mkfs.ext4 /dev/sda1
+mkfs.ext4 /dev/sda1 
 mkfs.ext4 /dev/sda2
 mkfs.ext4 /dev/sda3
 mount /dev/sda2 /mnt && mkdir /mnt/home/ && mount /dev/sda3 /mnt/home

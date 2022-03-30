@@ -12,6 +12,16 @@ passwd
 pacman -S grub --noconfirm
 grub-install /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
-exit
-umount -R /mnt
-reboot
+fallocate -l 3G /swapfile
+chmod 600 /swapfile
+mkswap /swapfile
+swapon /swapfile
+echo '/swapfile none swap sw 0 0' >> /etc/fstab
+useradd -m -g users -G wheel -s /bin/bash ivan
+passwd username
+echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
+pacman -S pulseaudio pulseaudio-alsa xorg xorg-xinit xorg-server --noconfirm
+pacman -S --needed  sddm --noconfirm
+pacman -S plasma dolphin konsole --noconfirm
+sudo systemctl enable sddm
+echo "Current=breeze" >> /usr/lib/sddm/sddm.conf.d/default.conf
