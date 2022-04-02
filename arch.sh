@@ -12,4 +12,4 @@ pacstrap -i /mnt base base-devel linux linux-firmware sudo nano --noconfirm
 genfstab -U -p /mnt >> /mnt/etc/fstab
 chmod +x nastavak.sh
 cp nastavak.sh /mnt/
-arch-chroot /mnt /bin/bash
+arch-chroot /mnt ./nastavak
